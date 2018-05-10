@@ -1,0 +1,37 @@
+/**
+*    public class ListNode {
+*        int val;
+*        ListNode next = null;
+*
+*        ListNode(int val) {
+*            this.val = val;
+*        }
+*    }
+*
+*/
+import java.util.ArrayList;
+public class Solution {
+    public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
+       ArrayList<Integer> arrayList2= new ArrayList<>();
+        if(listNode != null){
+           ArrayList<Integer> arrayList1= new ArrayList<>();
+           while(listNode !=null){
+            
+            
+            arrayList1.add(listNode.val);
+            listNode = listNode.next;
+            
+            
+        }
+        
+        int totalNum = arrayList1.size();
+        for(int i =0;i<totalNum;i++){
+            arrayList2.add(arrayList1.get(totalNum-1-i));
+        }
+        
+        return arrayList2;
+       } 
+        
+        return arrayList2;
+    }
+}
