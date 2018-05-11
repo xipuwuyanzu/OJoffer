@@ -1,0 +1,53 @@
+/**
+ * Definition for binary tree
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public TreeNode reConstructBinaryTree(int [] pre,int [] in) {
+        TreeNode root=null;
+        if(in!=null && pre !=null&&in.length>0&&pre.length>0){
+            root= new TreeNode(pre[0]);
+            int rootNum = pre[0];
+            int inNum=0 ;
+            for(int i=0;i<in.length;i++){
+                if(in[i]==rootNum){
+                   inNum=i;
+                }
+            }
+            int[] inLeft = new int[inNum];
+            for(int i=0;i<inNum;i++){
+                
+                inLeft[i]=in[i];
+                
+            }
+            int inRightNum = in.length-1-inNum;
+            int[] inRight = new int[inRightNum];
+            for(int j = inNum+1;j<in.length;j++){
+                inRight[j-inNum-1]=in[j];
+            }
+            int[] preleft= new int[inNum];
+            int[] preRight = new int[inRightNum];
+            for(int i=1;i<inNum+1;i++){
+                preleft[i-1]=pre[i];
+            }
+            for(int j =1+inNum;j<pre.length;j++){
+                preRight[j-1-inNum]=pre[j];
+            }
+            
+            
+            
+            
+            
+            
+            root.left=reConstructBinaryTree(preleft,inLeft);
+            root.right=reConstructBinaryTree(preRight,inRight);
+        }
+        
+        return root;
+    }
+}
