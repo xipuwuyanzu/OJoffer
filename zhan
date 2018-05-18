@@ -1,0 +1,61 @@
+import java.util.ArrayList;
+//纪念一下第一次编写这么多的代码，居然还对了。。。。效率好低啊
+public class Solution {
+    public boolean IsPopOrder(int [] pushA,int [] popA) {
+       boolean result = false;
+        if(pushA == null || popA == null){
+           
+           return result;
+       }
+       if(pushA.length==1){
+           if(pushA[0] == popA[0]){
+                result = true;
+           }else{
+               return false;
+           }
+          
+       }
+        if(pushA.length==2){
+            if(pushA[0] != popA[0] && pushA[0] != popA[1]){
+                return result;
+            }else if(pushA[1] != popA[0] && pushA[1] != popA[1]){
+                return result;
+            }else{
+                return true;
+            }
+        }
+       if(pushA.length==3){
+           if(pushA[0]==popA[1]&&pushA[1]==popA[2]){
+               result = false;
+           }else{
+               result = true;
+           }
+           return result;
+       }
+        
+       for(int j=0;j<=pushA.length-3;j++){
+           ArrayList<Integer> list1 = new ArrayList<>();
+           list1.add(pushA[j]);
+           list1.add(pushA[j+1]);
+           list1.add(pushA[j+2]);
+           ArrayList<Integer> list2 = new ArrayList<>();
+           for(int i=0;i<popA.length;i++){
+               if(list1.indexOf(popA[i]) != -1){
+                   list2.add(popA[i]);
+               }
+           }
+           int[] array =new int[3];
+           int[] array1 =new int[3];
+           for(int i=0;i<array.length;i++){
+               array[i]=list1.get(i);
+               array1[i]=list2.get(i);
+           }
+           
+           result=IsPopOrder(array,array1);
+           if(result==false){
+               break;
+           }
+        }
+        return result;
+    }
+}
