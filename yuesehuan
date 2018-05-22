@@ -1,0 +1,42 @@
+//约瑟环的问题
+
+public static void main(String[] args) {
+
+		boolean[] sum = new boolean[30];
+		for(int i=0;i<sum.length;i++){
+			sum[i]=true;
+		}
+		int count =0;
+		int index=0;
+		int leftcount=sum.length;
+		while(leftcount>15){
+			//这里来写丢下去的人的代码;
+			if(sum[index]==false){
+				index++;
+				if(index==sum.length){
+					index=0;
+				}
+				
+				continue;
+			}
+			
+			count++;
+			if(count==9){
+				count=0;
+				sum[index]=false;
+				leftcount--;
+			}
+			index++;
+			if(index==sum.length){
+				index=0;
+			}
+			
+		}
+		for(int i =0;i<sum.length;i++){
+		if(sum[i]==false){
+			System.out.println(i);
+		}
+		}
+		
+		
+	}
